@@ -1,12 +1,13 @@
+//Этот класс убирает пустые строки из скачанного непонятно где словаря
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class WorkWithFile {
-    public static final String PATHIN = "src\\1.txt";
-    public static final String PATHOUT = "src\\2.txt";
+public class VocabularProcessor {
+    public static final String PATHIN = "src\\vocabular_source.txt";
+    public static final String PATHOUT = "src\\vocabular.txt";
 
 
     public static void main(String[] args) {
