@@ -5,26 +5,26 @@ import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) {
-        Gallow gallow1 = new Gallow();
-        gallow1.convencedWord();
-        gallow1.generateUnhiddenWord();
+        GameSession game = new GameSession();
+        game.convencedWord();
+        game.generateUnhiddenWord();
 
         while (true) {
-            interfase(gallow1);
-            compareResult(gallow1);
+            interfase(game);
+            compareResult(game);
             char inputedChar = getChar();
-            compareChars(gallow1, inputedChar);
+            compareChars(game, inputedChar);
         }
     }
 
-    static void compareResult(Gallow gallow1) {
-        if (gallow1.hiddenWord.equals(gallow1.unhideenWord)) {
+    static void compareResult(GameSession game) {
+        if (game.hiddenWord.equals(game.unhideenWord)) {
             System.out.println("Вы угадали слово.");
             System.exit(0);
         }
-        if (gallow1.errors == 6) {
+        if (game.errors == 6) {
             System.out.println("Вы проиграли.");
-            System.out.println("Было загадано слово:" + gallow1.hiddenWord);
+            System.out.println("Было загадано слово:" + game.hiddenWord);
             System.exit(0);
         }
     }
@@ -36,25 +36,25 @@ public class Main {
         return curentChar;
     }
 
-    static void compareChars(Gallow gallow1, char inputedChar) {
+    static void compareChars(GameSession game, char inputedChar) {
         int matchCounter = 0;
         String unhiddentWord = "";
-        for (int i = 0; i < gallow1.hiddenWord.length(); i++) {
-            if (gallow1.hiddenWord.charAt(i) == inputedChar) {
+        for (int i = 0; i < game.hiddenWord.length(); i++) {
+            if (game.hiddenWord.charAt(i) == inputedChar) {
                 unhiddentWord += inputedChar;
                 matchCounter++;
             } else {
-                unhiddentWord += gallow1.unhideenWord.charAt(i);
+                unhiddentWord += game.unhideenWord.charAt(i);
             }
         }
-        if (matchCounter == 0) gallow1.errors++;
-        gallow1.unhideenWord = unhiddentWord;
-        gallow1.usedChar += inputedChar;
+        if (matchCounter == 0) game.errors++;
+        game.unhideenWord = unhiddentWord;
+        game.usedChar += inputedChar;
     }
 
-    static void interfase(Gallow gallow1) {
+    static void interfase(GameSession game) {
 
-        switch (gallow1.errors) {
+        switch (game.errors) {
             case 0:
                 System.out.println("______");
                 break;
@@ -108,48 +108,15 @@ public class Main {
                 System.out.println("______");
                 break;
         }
-        System.out.println("Загадано слово:" + gallow1.unhideenWord);
-        System.out.println("Вы уже использовали: " + gallow1.usedChar);
+        System.out.println("Загадано слово:" + game.unhideenWord);
+        System.out.println("Вы уже использовали: " + game.usedChar);
     }
 
 //end Main
 }
 
 
-class Gallow {
-    int errors = 0;
-    String hiddenWord = "";
-    String unhideenWord = "";
-    String usedChar = "";
 
-    void convencedWord() {
-        //***
-        try {
-            File file = new File("src\\vocabular.txt");
-            Scanner scanner = new Scanner(file);
-            Random random = new Random();
-            int randWordNumber = random.nextInt(949);
-            for (int i = 0; scanner.hasNextLine(); i++) {
-                String line = scanner.nextLine();
-                if (i == randWordNumber) hiddenWord = line.toUpperCase();
-            }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    void generateUnhiddenWord() {
-        for (int i = 0; i < hiddenWord.length(); i++) {
-            unhideenWord += '*';
-        }
-    }
-
-
-    //
-
-
-    //
 //end Gallow
 }
 
