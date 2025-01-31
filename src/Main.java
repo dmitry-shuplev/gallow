@@ -10,7 +10,7 @@ public class Main {
         game.generateUnhiddenWord();
 
         while (true) {
-            interfase(game);
+            Show.showGallow(game);
             compareResult(game);
             char inputedChar = getChar();
             compareChars(game, inputedChar);
@@ -52,72 +52,10 @@ public class Main {
         game.usedChar += inputedChar;
     }
 
-    static void interfase(GameSession game) {
-
-        switch (game.errors) {
-            case 0:
-                System.out.println("______");
-                break;
-            case 1:
-                System.out.println("|");
-                System.out.println("|");
-                System.out.println("|");
-                System.out.println("|");
-                System.out.println("______");
-                break;
-            case 2:
-                System.out.println("+-----+");
-                System.out.println("|");
-                System.out.println("|");
-                System.out.println("|");
-                System.out.println("|");
-                System.out.println("______");
-                break;
-            case 3:
-                System.out.println("+-----+");
-                System.out.println("|     |");
-                System.out.println("|");
-                System.out.println("|");
-                System.out.println("|");
-                System.out.println("______");
-                break;
-            case 4:
-                System.out.println("+-----+");
-                System.out.println("|     |");
-                System.out.println("|     O");
-                System.out.println("|");
-                System.out.println("|");
-                System.out.println("______");
-                break;
-            case 5:
-                System.out.println("+-----+");
-                System.out.println("|     |");
-                System.out.println("|     O");
-                System.out.println("|    /-\\");
-                System.out.println("|");
-                System.out.println("______");
-
-                break;
-            case 6:
-                System.out.println("Вы проиграли.");
-                System.out.println("+-----+");
-                System.out.println("|     |");
-                System.out.println("|     O");
-                System.out.println("|    /-\\");
-                System.out.println("|     |");
-                System.out.println("______");
-                break;
-        }
-        System.out.println("Загадано слово:" + game.unhideenWord);
-        System.out.println("Вы уже использовали: " + game.usedChar);
-    }
-
-//end Main
 }
 
 
 
-//end Gallow
-}
+
 
 
