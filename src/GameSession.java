@@ -9,6 +9,7 @@ public class GameSession {
         String hiddenWord = "";
         String unhideenWord = "";
         String usedChar = "";
+        StringBuilder avalibleChars = new StringBuilder("АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ") ;
 
         void convencedWord() {
             //***

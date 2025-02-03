@@ -13,18 +13,22 @@ public class Main {
             Show.showGallow(game);
             compareResult(game);
             char inputedChar = getChar();
-            compareChars(game, inputedChar);
+            if (!isCharCorrect(game, inputedChar)) {
+                Show.charError();
+                continue;
+            }
+            ;
+            procesedGameSession(game, inputedChar);
         }
     }
 
     static void compareResult(GameSession game) {
         if (game.hiddenWord.equals(game.unhideenWord)) {
-            System.out.println("Вы угадали слово.");
+            Show.winGame(game);
             System.exit(0);
         }
         if (game.errors == 6) {
-            System.out.println("Вы проиграли.");
-            System.out.println("Было загадано слово:" + game.hiddenWord);
+            Show.loseGame(game);
             System.exit(0);
         }
     }
@@ -36,7 +40,7 @@ public class Main {
         return curentChar;
     }
 
-    static void compareChars(GameSession game, char inputedChar) {
+    static void procesedGameSession(GameSession game, char inputedChar) {
         int matchCounter = 0;
         String unhiddentWord = "";
         for (int i = 0; i < game.hiddenWord.length(); i++) {
@@ -47,9 +51,27 @@ public class Main {
                 unhiddentWord += game.unhideenWord.charAt(i);
             }
         }
-        if (matchCounter == 0) game.errors++;
+        if (matchCounter == 0) {
+            game.errors++;
+        }
+        for (int i = 0; i < game.avalibleChars.length(); i++) {
+            if (game.avalibleChars.charAt(i) == inputedChar) {
+                game.avalibleChars.deleteCharAt(i);
+            }
+        }
         game.unhideenWord = unhiddentWord;
         game.usedChar += inputedChar;
+    }
+
+    static boolean isCharCorrect(GameSession game, char currenChar) {
+        if (game.avalibleChars.toString().contains(String.valueOf(currenChar))) {
+            return true;
+        }
+        return false;
+        //Можно избежать двойного вызова провеки наличия символа если возвращать не булево значение,
+        // а int с номером символа.
+        //В случае если символа нет возвращать некорректное значение, -1. Но поскольку мне делались замечания
+        // по чистоте кода делаю так. Если не прав поправьте.
     }
 
 }
