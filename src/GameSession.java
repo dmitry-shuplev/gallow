@@ -14,7 +14,7 @@ public class GameSession {
         void convencedWord() {
             //***
             try {
-                File file = new File("src\\vocabular.txt");
+                File file = new File("C:\\Users\\дим\\Java_code\\gallow\\vocabular\\vocabular.txt");
                 Scanner scanner = new Scanner(file);
                 Random random = new Random();
                 int randWordNumber = random.nextInt(949);

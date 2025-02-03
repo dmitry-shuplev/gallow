@@ -17,7 +17,6 @@ public class Main {
                 Show.charError();
                 continue;
             }
-            ;
             procesedGameSession(game, inputedChar);
         }
     }
@@ -64,10 +63,14 @@ public class Main {
     }
 
     static boolean isCharCorrect(GameSession game, char currenChar) {
-        if (game.avalibleChars.toString().contains(String.valueOf(currenChar))) {
-            return true;
+        //Не работающаяя после компиляции версия кода
+        for (int i = 0; i < game.avalibleChars.length(); i++) {
+            if (game.avalibleChars.charAt(i) == currenChar) {
+                return true;
+            }
         }
         return false;
+
         //Можно избежать двойного вызова провеки наличия символа если возвращать не булево значение,
         // а int с номером символа.
         //В случае если символа нет возвращать некорректное значение, -1. Но поскольку мне делались замечания

@@ -6,8 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class VocabularProcessor {
-    public static final String PATHIN = "src\\vocabular_source.txt";
-    public static final String PATHOUT = "src\\vocabular.txt";
+    public static final String PATHIN = "vocabular\\vocabular_source.txt";
+    public static final String PATHOUT = "vocabular\\vocabular.txt";
 
 
     public static void main(String[] args) {
