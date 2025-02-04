@@ -16,10 +16,10 @@ public class Main {
             Show.showGallow(game);
             compareResult(game);
             char inputedChar = getChar();
-            //if (!isCharCorrect(game, inputedChar)) {
-            //    Show.charError();
-            //    continue;
-            //}
+            if (!isCharCorrect(game, inputedChar)) {
+            Show.charError();
+            continue;
+            }
             procesedGameSession(game, inputedChar);
         }
     }
@@ -66,7 +66,6 @@ public class Main {
     }
 
     static boolean isCharCorrect(GameSession game, char currenChar) {
-        //Не работающаяя после компиляции версия кода
         for (int i = 0; i < game.avalibleChars.length(); i++) {
             if (game.avalibleChars.charAt(i) == currenChar) {
                 return true;

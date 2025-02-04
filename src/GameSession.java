@@ -24,16 +24,26 @@ public class GameSession {
                 }
             }
             //раскоментировать cледующую строку при компиляции на своем сомпьютере
-            getAbsolutePath = getAbsolutePath.substring(0, getAbsolutePath.length()-3);
+            //getAbsolutePath = getAbsolutePath.substring(0, getAbsolutePath.length()-3);
             getAbsolutePath += "/resources/vocabular.txt";
 
             File file = new File(getAbsolutePath);
             Scanner scanner = new Scanner(file);
             Random random = new Random();
-            int randWordNumber = random.nextInt(949);
+            int lineCounter = -1;
+            while (scanner.hasNextLine()) {
+                scanner.nextLine();
+                lineCounter++;
+            }
+            scanner = new Scanner(file);
+
+            int randWordNumber = random.nextInt(lineCounter);
+            System.out.println(randWordNumber);
             for (int i = 0; scanner.hasNextLine(); i++) {
                 String line = scanner.nextLine();
-                if (i == randWordNumber) hiddenWord = line.toUpperCase();
+                if (i == randWordNumber) {
+                    hiddenWord = line.toUpperCase();
+                }
             }
             scanner.close();
         } catch (FileNotFoundException e) {

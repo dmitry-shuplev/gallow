@@ -51,6 +51,7 @@ class Show {
         }
         System.out.println("Уже были использованы буквы:" + game.usedChar);
         System.out.println("Возможные варианты:" + game.avalibleChars);
+        //эта строка используется при тестировании при игре ее нужо удалить
         System.out.println(game.hiddenWord);
         System.out.println(game.unhideenWord);
     }
