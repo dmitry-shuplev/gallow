@@ -6,41 +6,45 @@ import java.util.Scanner;
 
 public class GameSession {
 
-        int errors = 0;
-        String hiddenWord = "";
-        String unhideenWord = "";
-        String usedChar = "";
-        StringBuilder avalibleChars = new StringBuilder("АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ") ;
+    int errors = 0;
+    String hiddenWord = "";
+    String unhideenWord = "";
+    String usedChar = "";
+    StringBuilder avalibleChars = new StringBuilder("АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ");
 
-        void convencedWord() {
-            //***
-            try {
-                File temp = new File("resources\\vocabular.txt");
-                String path = temp.getAbsolutePath();
-                String path1 = "";
-                for(int i=0; i<path.length();i++){
-                    if (path.charAt(i) == '/'){ path1 += '\\'; }
-                    else{path1+=path.charAt(i);}
+    void convencedWord() {
+        try {
+            String currentDir = System.getProperty("user.dir");
+            String getAbsolutePath = "";
+            for (int i = 0; i < currentDir.length(); i++) {
+                if (currentDir.charAt(i) == '\\') {
+                    getAbsolutePath += '/';
+                } else {
+                    getAbsolutePath += currentDir.charAt(i);
                 }
-
-                File file = new File("C:\\Users\\дим\\Java_code\\gallow\\resources\\vocabular.txt");
-                Scanner scanner = new Scanner(file);
-                Random random = new Random();
-                int randWordNumber = random.nextInt(949);
-                for (int i = 0; scanner.hasNextLine(); i++) {
-                    String line = scanner.nextLine();
-                    if (i == randWordNumber) hiddenWord = line.toUpperCase();
-                }
-                scanner.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             }
-        }
+            //раскоментировать cледующую строку при компиляции на своем сомпьютере
+            getAbsolutePath = getAbsolutePath.substring(0, getAbsolutePath.length()-3);
+            getAbsolutePath += "/resources/vocabular.txt";
 
-        void generateUnhiddenWord() {
-            for (int i = 0; i < hiddenWord.length(); i++) {
-                unhideenWord += '*';
+            File file = new File(getAbsolutePath);
+            Scanner scanner = new Scanner(file);
+            Random random = new Random();
+            int randWordNumber = random.nextInt(949);
+            for (int i = 0; scanner.hasNextLine(); i++) {
+                String line = scanner.nextLine();
+                if (i == randWordNumber) hiddenWord = line.toUpperCase();
             }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-
     }
+
+    void generateUnhiddenWord() {
+        for (int i = 0; i < hiddenWord.length(); i++) {
+            unhideenWord += '*';
+        }
+    }
+
+}

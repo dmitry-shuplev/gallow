@@ -1,4 +1,7 @@
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Random;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
@@ -13,10 +16,10 @@ public class Main {
             Show.showGallow(game);
             compareResult(game);
             char inputedChar = getChar();
-            if (!isCharCorrect(game, inputedChar)) {
-                Show.charError();
-                continue;
-            }
+            //if (!isCharCorrect(game, inputedChar)) {
+            //    Show.charError();
+            //    continue;
+            //}
             procesedGameSession(game, inputedChar);
         }
     }
@@ -33,7 +36,7 @@ public class Main {
     }
 
     static char getChar() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(new InputStreamReader(System.in, StandardCharsets.UTF_8));
         System.out.print("Введите букву: ");
         char curentChar = scanner.nextLine().toUpperCase().charAt(0);
         return curentChar;
